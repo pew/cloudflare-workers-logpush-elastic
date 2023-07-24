@@ -1,6 +1,6 @@
 name = "logpush-elastic"
 main = "src/index.ts"
-compatibility_date = "2023-04-14"
+compatibility_date = "2023-07-24"
 usage_model = "unbound"
 
 [vars]

@@ -26,7 +26,7 @@ async function sendDocument(bulk: string, stream: string, authHeader: string, en
   if (response.ok) {
     console.log('documents indexed')
   } else {
-    console.error(`error indexing documents: ${response.statusText}`)
+    console.error(`error indexing documents: ${await response.text()} - ${response.statusText}`)
   }
   return response
 }
@@ -42,6 +42,7 @@ function convertToBulkFormat(blob: string, stream: string): string {
 
   for (const document of documents) {
     const indexAction = { index: { _index: stream } }
+    document['date'] = new Date().toISOString()
     bulkData += JSON.stringify(indexAction) + '\n'
     bulkData += JSON.stringify(document) + '\n'
   }
